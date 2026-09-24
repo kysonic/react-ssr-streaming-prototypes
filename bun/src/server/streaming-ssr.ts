@@ -11,13 +11,14 @@ interface StreamingSSRConfig {
     timeout?: number;
 }
 
-
 export class StreamingSSRRendering {
     constructor(private config: StreamingSSRConfig = {}) {}
 
     renderToStream(element: React.ReactElement): ReadableStream<Uint8Array> {
         const stream = renderToReadableStream(element, {
-            bootstrapScripts: this.config.bootstrapScripts || ['/build/client.js'],
+            bootstrapScripts: this.config.bootstrapScripts || [
+                '/build/client.js',
+            ],
         });
 
         return stream;
