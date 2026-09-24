@@ -11,7 +11,7 @@ interface StreamingSSRConfig {
     timeout?: number;
 }
 
-export class StreamingSSRRendering {
+export class StreamingSSRRenderer {
     constructor(private config: StreamingSSRConfig = {}) {}
 
     renderToStream(element: React.ReactElement): ReadableStream<Uint8Array> {

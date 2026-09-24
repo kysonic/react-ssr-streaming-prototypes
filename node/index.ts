@@ -1,1 +1,1 @@
-console.log('Hello node ts');
+import './src/server/server.tsx';
