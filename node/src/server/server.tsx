@@ -1,9 +1,9 @@
 import express from 'express';
-import { StreamingSSRRenderer } from './streaming-ssr-renderer.ts';
-import { Page } from '../components/page.tsx';
+import { StreamingSSRRenderer } from './lib/streaming-ssr-renderer.ts';
+import { Root } from './components/root.tsx';
 
 const app = express();
-const port = 3000;
+const port = 3007;
 
 // Express 5 (path-to-regexp v8) no longer accepts a bare '*'
 app.get('/{*splat}', (req, res) => {
@@ -22,9 +22,7 @@ app.get('/{*splat}', (req, res) => {
         timeout: 10_000,
     });
 
-    const stream = renderer.renderToStream(
-        <Page req={req} />
-    );
+    const stream = renderer.renderToStream(<Root req={req} />);
 
     stream.pipe(res);
 });

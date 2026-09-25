@@ -1,12 +1,12 @@
-import type { Request } from "express";
-import { App } from "./App.tsx";
-import { Body, Head, Html } from "./document.tsx";
+import type { Request } from 'express';
+import { App } from '../../app/App.tsx';
+import { Body, Head, Html } from './document.tsx';
 
 export interface PageProps {
     req: Request;
 }
 
-export function Page({ req }: PageProps) {
+export function Root({ req }: PageProps) {
     return (
         <Html>
             <Head>
