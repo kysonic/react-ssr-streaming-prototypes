@@ -1,4 +1,4 @@
-import './src/server/lib/ignore-css.ts';
+import './src/server/lib/css-url-hook.ts';
 
-// Async because otherwise we won't ignore css imports on server...
+// Dynamic import: the hook must be registered before the app's modules load
 await import('./src/server/server.tsx');
