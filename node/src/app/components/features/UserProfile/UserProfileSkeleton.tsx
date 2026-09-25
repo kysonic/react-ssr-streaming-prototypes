@@ -1,3 +1,5 @@
+import './UserProfile.css';
+
 export function UserProfileSkeleton() {
     return (
         <div className="user-profile user-profile--skeleton" aria-busy="true">

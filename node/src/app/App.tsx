@@ -1,11 +1,8 @@
 import { DefaultLayout } from './components/layouts/default/DefaultLayout.tsx';
 import { HomePage } from './components/pages/Home/HomePage.tsx';
+import './styles/global.css';
 
-interface AppProps {
-    url: string;
-}
-
-export function App({ url }: AppProps) {
+export function App() {
     return (
         <main className="app">
             <DefaultLayout>

@@ -1,5 +1,6 @@
 import { use } from 'react';
 import type { User } from '../../../api/user.ts';
+import './UserProfile.css';
 
 export interface UserProfileProps {
     userPromise: Promise<User>;

@@ -1,12 +1,7 @@
-import type { Request } from 'express';
 import { App } from '../../app/App.tsx';
 import { Body, Head, Html } from './document.tsx';
 
-export interface PageProps {
-    req: Request;
-}
-
-export function Root({ req }: PageProps) {
+export function Root() {
     return (
         <Html>
             <Head>
@@ -22,9 +17,10 @@ export function Root({ req }: PageProps) {
                     sizes="32x32"
                     href="/favicon.png"
                 />
+                <link rel="stylesheet" href="/build/client.css" />
             </Head>
             <Body>
-                <App url={req.url} />
+                <App />
             </Body>
         </Html>
     );

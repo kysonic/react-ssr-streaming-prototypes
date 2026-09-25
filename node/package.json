@@ -4,7 +4,9 @@
   "description": "Node.js React SSR streaming",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch ./index.ts"
+    "dev": "pnpm build:client --watch=forever & tsx watch ./index.ts",
+    "build:client": "esbuild src/client/index.tsx --bundle --outfile=public/build/client.js --jsx=automatic --define:process.env.NODE_ENV=\\\"development\\\"",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
@@ -27,6 +29,8 @@
     "@types/express": "^5.0.6",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "tsx": "^4.23.15"
+    "esbuild": "0.28.2",
+    "tsx": "^4.23.15",
+    "typescript": "^6.0.3"
   }
 }

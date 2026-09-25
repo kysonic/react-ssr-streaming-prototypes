@@ -1,5 +1,6 @@
 import { Footer } from './Footer/Footer.tsx';
 import { Header } from './Header/Header.tsx';
+import './DefaultLayout.css';
 
 export interface DefaultLayoutProps {
     children: React.ReactElement;

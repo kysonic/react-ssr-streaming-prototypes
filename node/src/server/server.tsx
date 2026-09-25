@@ -36,12 +36,15 @@ app.get('/{*splat}', (req, res, next) => {
         timeout: 10_000,
     });
 
-    const stream = renderer.renderToStream(<Root req={req} />);
+    const stream = renderer.renderToStream(<Root />);
 
     stream.pipe(res);
 });
 
 app.listen(port, (err) => {
-    if (err) throw err;
-    console.log(`Example app listening on port ${port}`);
+    if (err) {
+        throw err;
+    }
+    
+    console.log(`Streaming SSR app listening on port ${port}`);
 });

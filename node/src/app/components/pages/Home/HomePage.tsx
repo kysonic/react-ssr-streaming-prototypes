@@ -2,6 +2,7 @@ import { Suspense } from 'react';
 import { fetchUser } from '../../../api/user.ts';
 import { UserProfileSkeleton } from '../../features/UserProfile/UserProfileSkeleton.tsx';
 import { UserProfile } from '../../features/UserProfile/UserProfile.tsx';
+import './HomePage.css';
 
 export function HomePage() {
     // Created here, above the Suspense boundary, so the promise stays the same
