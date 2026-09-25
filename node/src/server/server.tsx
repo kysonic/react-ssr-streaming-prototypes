@@ -13,6 +13,11 @@ app.get('/{*splat}', (req, res) => {
         onShellReady: () => {
             res.statusCode = 200;
             res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            console.log('Shell ready - All without suspense');
+        },
+
+        onAllReady: () => {
+            console.log('All Suspenses Resolved');
         },
 
         onError: () => {
