@@ -4,8 +4,8 @@
   "description": "Node.js React SSR streaming",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm build:client --watch=forever & tsx watch ./index.ts",
-    "build:client": "esbuild src/client/index.tsx --bundle --outfile=public/build/client.js --jsx=automatic --define:process.env.NODE_ENV=\\\"development\\\"",
+    "dev": "pnpm build:client --watch & tsx watch ./index.ts",
+    "build:client": "node esbuild.config.ts",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [],
