@@ -1,6 +1,7 @@
 import { use } from 'react';
 import type { User } from '../../../api/user.ts';
-import './UserProfile.css';
+import { Stylesheet } from '../../common/Stylesheet.tsx';
+import cssHref from './UserProfile.css';
 
 export interface UserProfileProps {
     userPromise: Promise<User>;
@@ -15,6 +16,7 @@ export function UserProfile({ userPromise }: UserProfileProps) {
 
     return (
         <div className="user-profile">
+            <Stylesheet href={cssHref} precedence="features" />
             <div className="user-profile__avatar">{initials}</div>
             <div className="user-profile__info">
                 <div className="user-profile__name">{user.name}</div>

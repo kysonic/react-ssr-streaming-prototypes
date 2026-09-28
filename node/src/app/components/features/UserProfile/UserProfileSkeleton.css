@@ -1,0 +1,54 @@
+/* Same box as .user-profile so nothing shifts when the profile arrives */
+.user-profile-skeleton {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+}
+
+.user-profile-skeleton__avatar,
+.user-profile-skeleton__name,
+.user-profile-skeleton__email {
+    background: #eee;
+    animation: user-profile-skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.user-profile-skeleton__avatar {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+}
+
+.user-profile-skeleton__info {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.user-profile-skeleton__name {
+    width: 60%;
+    height: 16px;
+    border-radius: 4px;
+}
+
+.user-profile-skeleton__email {
+    width: 80%;
+    height: 14px;
+    border-radius: 4px;
+}
+
+@keyframes user-profile-skeleton-pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .user-profile-skeleton * {
+        animation: none;
+    }
+}

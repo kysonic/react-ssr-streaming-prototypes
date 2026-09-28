@@ -17,7 +17,6 @@ export function Root() {
                     sizes="32x32"
                     href="/favicon.png"
                 />
-                <link rel="stylesheet" href="/build/client.css" />
             </Head>
             <Body>
                 <App />

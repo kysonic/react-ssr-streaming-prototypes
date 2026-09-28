@@ -2,7 +2,8 @@ import { Suspense } from 'react';
 import { fetchUser } from '../../../api/user.ts';
 import { UserProfileSkeleton } from '../../features/UserProfile/UserProfileSkeleton.tsx';
 import { UserProfile } from '../../features/UserProfile/UserProfile.tsx';
-import './HomePage.css';
+import { Stylesheet } from '../../common/Stylesheet.tsx';
+import cssHref from './HomePage.css';
 
 export function HomePage() {
     // Created here, above the Suspense boundary, so the promise stays the same
@@ -11,6 +12,7 @@ export function HomePage() {
 
     return (
         <div className="home-page">
+            <Stylesheet href={cssHref} />
             <section className="home-page__hero">
                 <h1>Welcome to Our Store</h1>
                 <p>Discover amazing products</p>
