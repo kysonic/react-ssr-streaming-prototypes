@@ -23,9 +23,7 @@ export class StreamingSSRRenderer {
         const output = new PassThrough();
 
         const { pipe, abort } = renderToPipeableStream(element, {
-            bootstrapScripts: this.config.bootstrapScripts || [
-                '/build/client.js',
-            ], // inject script tag
+            bootstrapScripts: this.config.bootstrapScripts, // inject script tag
             bootstrapModules: this.config.bootstrapModules, // inject script type="module"
 
             onShellReady: () => {
