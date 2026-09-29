@@ -14,7 +14,7 @@ type AnyComponent = ComponentType<any>;
 export function lazyChunk<T extends AnyComponent>(
     id: string,
     load: () => Promise<{ default: T }>,
-) {
+): T {
     const Lazy = lazy(load);
 
     function Chunk(props: ComponentProps<T>) {
@@ -34,5 +34,6 @@ export function lazyChunk<T extends AnyComponent>(
 
     Chunk.displayName = `LazyChunk(${id})`;
 
-    return Chunk;
+    // Lends to exact component not Chunk 
+    return Chunk as unknown as T;
 }
