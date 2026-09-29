@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { DefaultLayout } from './components/layouts/default/DefaultLayout.tsx';
 import { Stylesheet } from './components/common/Stylesheet.tsx';
+import { HomePageSkeleton } from './components/pages/Home/HomePageSkeleton.tsx';
 import { lazyChunk } from './lib/chunks/lazy-chunk.tsx';
 import globalCss from './styles/global.css';
 
@@ -16,7 +17,7 @@ export function App() {
         <main className="app">
             <Stylesheet href={globalCss} precedence="base" />
             <DefaultLayout>
-                <Suspense fallback={<div>Home page loading...</div>}>
+                <Suspense fallback={<HomePageSkeleton />}>
                     <HomePage />
                 </Suspense>
             </DefaultLayout>

@@ -1,0 +1,50 @@
+/* Same grid and hero box as .home-page so nothing shifts when the page arrives */
+.home-page-skeleton {
+    display: grid;
+    grid-template-columns: 1fr 280px;
+    gap: 24px;
+    align-items: start;
+}
+
+.home-page-skeleton__hero {
+    padding: 48px 32px;
+    border-radius: 8px;
+    background: #f5f5f5;
+}
+
+.home-page-skeleton__title,
+.home-page-skeleton__subtitle {
+    border-radius: 4px;
+    background: #e5e5e5;
+    animation: home-page-skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+/* Heights match the line boxes of h1 (32px) and p (16px) */
+.home-page-skeleton__title {
+    width: 50%;
+    height: 37px;
+    margin-bottom: 8px;
+}
+
+.home-page-skeleton__subtitle {
+    width: 30%;
+    height: 18.5px;
+}
+
+@keyframes home-page-skeleton-pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 768px) {
+    .home-page-skeleton {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-page-skeleton * {
+        animation: none;
+    }
+}

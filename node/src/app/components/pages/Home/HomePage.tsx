@@ -1,9 +1,17 @@
 import { Suspense } from 'react';
 import { fetchUser } from '../../../api/user.ts';
 import { UserProfileSkeleton } from '../../features/UserProfile/UserProfileSkeleton.tsx';
-import { UserProfile } from '../../features/UserProfile/UserProfile.tsx';
 import { Stylesheet } from '../../common/Stylesheet.tsx';
 import cssHref from './HomePage.css';
+import { lazyChunk } from '../../../lib/chunks/lazy-chunk.tsx';
+
+const UserProfile = lazyChunk(
+    'src/app/components/features/UserProfile/UserProfile.tsx',
+    () =>
+        import('../../features/UserProfile/UserProfile.tsx').then((m) => ({
+            default: m.UserProfile,
+        })),
+);
 
 export function HomePage() {
     // Created here, above the Suspense boundary, so the promise stays the same
