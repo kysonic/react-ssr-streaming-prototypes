@@ -8,7 +8,7 @@ export interface StylesheetProps {
     precedence?: Precedence;
 }
 
-// Needs only to keep precedence for now
+// Needs only to not forget precedence for now
 export function Stylesheet({ href, precedence = 'components' }: StylesheetProps) {
     return <link rel="stylesheet" href={href} precedence={precedence} />;
 }

@@ -1,5 +1,6 @@
 import path from 'node:path';
 import express from 'express';
+import { StaticRouter } from 'react-router';
 import { StreamingSSRRenderer } from './lib/streaming-ssr-renderer.ts';
 import { Root } from './components/root.tsx';
 import { readManifest } from './lib/manifest.ts';
@@ -41,7 +42,14 @@ app.get('/{*splat}', (req, res, next) => {
         timeout: 10_000,
     });
 
-    const stream = renderer.renderToStream(<Root manifest={manifest} />);
+    // The router only provides context, so it wraps Root from the outside:
+    // StaticRouter here, BrowserRouter in src/client/index.tsx, Root is shared.
+    // originalUrl keeps the query, BrowserRouter reads the same URL on hydration
+    const stream = renderer.renderToStream(
+        <StaticRouter location={req.originalUrl}>
+            <Root manifest={manifest} />
+        </StaticRouter>,
+    );
 
     stream.pipe(res);
 });
