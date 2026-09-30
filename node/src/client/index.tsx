@@ -3,9 +3,12 @@ import { BrowserRouter } from 'react-router';
 import { DataCache } from '../app/lib/data/data-cache.ts';
 import { DataContext } from '../app/lib/data/data-context.ts';
 import { Root } from '../server/components/root.tsx';
+import { receiveServerData } from './receive-server-data.ts';
 
 // One cache for the whole tab: data stays while the user navigates
 const dataCache = new DataCache();
+// Data the server already loaded: no second fetch on hydration
+receiveServerData(dataCache);
 
 // Same tree as on the server, with StaticRouter swapped for BrowserRouter
 hydrateRoot(

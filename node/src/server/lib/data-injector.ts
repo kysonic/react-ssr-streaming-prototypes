@@ -1,8 +1,5 @@
 import type { DataCache } from '../../app/lib/data/data-cache.ts';
-
-// The client reads this array (src/client/index.tsx) and puts every
-// [key, value] pair into its own DataCache before hydration
-export const DATA_GLOBAL = '__DATA__';
+import { DATA_GLOBAL, type DataPair } from '../../app/lib/data/transfer.ts';
 
 // JSON is not safe inside <script> as is: "</script>" or "<!--" in the data
 // would end the tag or open a comment (XSS). Escaped, "<" stays a valid JSON
@@ -26,7 +23,7 @@ export function createDataInjector(cache: DataCache): () => string {
 
     cache.subscribe((key, result) => {
         if (result.status === 'fulfilled') {
-            pending.push(serialize([key, result.value]));
+            pending.push(serialize([key, result.value] satisfies DataPair));
         }
     });
 
