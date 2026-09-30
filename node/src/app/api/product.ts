@@ -58,7 +58,7 @@ export interface ProductsResponse {
 }
 
 // Fake API: Returns whole products we have at the moment
-export function fetchProducts(delay = 2000): Promise<ProductsResponse> {
+export function fetchProducts(delay = 3000): Promise<ProductsResponse> {
     console.log(`Fetch products <<<<<`);
     return new Promise((resolve) => {
         setTimeout(

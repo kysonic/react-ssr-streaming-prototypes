@@ -31,6 +31,11 @@
     height: 18.5px;
 }
 
+/* Same as .home-page__list */
+.home-page-skeleton__list {
+    padding: 20px 0;
+}
+
 @keyframes home-page-skeleton-pulse {
     50% {
         opacity: 0.5;

@@ -1,4 +1,5 @@
 import { Stylesheet } from '../../common/Stylesheet.tsx';
+import { ProductListSkeleton } from '../../features/ProductList/ProductListSkeleton.tsx';
 import { UserProfileSkeleton } from '../../features/UserProfile/UserProfileSkeleton.tsx';
 import cssHref from './HomePageSkeleton.css';
 
@@ -14,10 +15,13 @@ export function HomePageSkeleton() {
                 <div className="home-page-skeleton__subtitle" />
             </section>
             <aside>
-                {/* Same fallback HomePage shows while the user loads,
+                {/* Same fallbacks HomePage shows while its data loads,
                     so nothing blinks when the chunk arrives */}
                 <UserProfileSkeleton />
             </aside>
+            <section className="home-page-skeleton__list">
+                <ProductListSkeleton />
+            </section>
         </div>
     );
 }

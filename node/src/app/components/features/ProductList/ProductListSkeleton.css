@@ -1,0 +1,60 @@
+/* Same boxes as ProductList so nothing shifts when the products arrive */
+.product-list-skeleton__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.product-list-skeleton__card {
+    padding: 12px;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+}
+
+.product-list-skeleton__heading,
+.product-list-skeleton__image,
+.product-list-skeleton__title,
+.product-list-skeleton__price {
+    border-radius: 4px;
+    background: #eee;
+    animation: product-list-skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+/* Heights match the line boxes of the heading (20px), title (16px), price (14px) */
+.product-list-skeleton__heading {
+    width: 120px;
+    height: 23px;
+    margin-bottom: 16px;
+}
+
+.product-list-skeleton__image {
+    aspect-ratio: 4 / 3;
+    margin-bottom: 12px;
+    border-radius: 6px;
+}
+
+.product-list-skeleton__title {
+    width: 70%;
+    height: 18.5px;
+}
+
+.product-list-skeleton__price {
+    width: 40px;
+    height: 16px;
+    margin-top: 4px;
+}
+
+@keyframes product-list-skeleton-pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-list-skeleton * {
+        animation: none;
+    }
+}

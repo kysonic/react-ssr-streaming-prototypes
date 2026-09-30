@@ -3,6 +3,7 @@ import { UserProfileSkeleton } from '../../features/UserProfile/UserProfileSkele
 import { Stylesheet } from '../../common/Stylesheet.tsx';
 import { lazyChunk } from '../../../lib/chunks/lazy-chunk.tsx';
 import { ProductList } from '../../features/ProductList/ProductList.tsx';
+import { ProductListSkeleton } from '../../features/ProductList/ProductListSkeleton.tsx';
 
 import cssHref from './HomePage.css';
 
@@ -28,7 +29,7 @@ export function HomePage() {
                 </Suspense>
             </aside>
             <section className="home-page__list">
-                <Suspense fallback={<div>Product list fallback...</div>}>
+                <Suspense fallback={<ProductListSkeleton />}>
                     <ProductList />
                 </Suspense>
             </section>
