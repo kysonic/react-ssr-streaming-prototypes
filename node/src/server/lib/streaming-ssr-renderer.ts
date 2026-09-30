@@ -1,6 +1,7 @@
 import { PassThrough, type Readable } from 'node:stream';
 import type { ReactElement } from 'react';
 import { renderToPipeableStream } from 'react-dom/server';
+import { HtmlInjector } from './html-injector.ts';
 
 interface StreamingSSRConfig {
     bootstrapScripts?: string[];
@@ -8,6 +9,8 @@ interface StreamingSSRConfig {
     onShellReady?: () => void;
     onAllReady?: () => void;
     onError?: (error: unknown) => void;
+    // Extra HTML to add to the stream as it goes (see HtmlInjector)
+    injectHTML?: () => string;
     timeout?: number;
 }
 
@@ -20,7 +23,9 @@ export class StreamingSSRRenderer {
 
     renderToStream(element: ReactElement): Readable {
         // renderToPipeableStream needs a real Node Writable as the pipe target
-        const output = new PassThrough();
+        const output = this.config.injectHTML
+            ? new HtmlInjector(this.config.injectHTML)
+            : new PassThrough();
 
         const { pipe, abort } = renderToPipeableStream(element, {
             bootstrapScripts: this.config.bootstrapScripts, // inject script tag
