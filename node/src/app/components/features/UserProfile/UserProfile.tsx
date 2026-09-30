@@ -1,5 +1,5 @@
 import { use } from 'react';
-import type { User } from '../../../api/user.ts';
+import { fetchUser, type User } from '../../../api/user.ts';
 import { Stylesheet } from '../../common/Stylesheet.tsx';
 import cssHref from './UserProfile.css';
 
@@ -9,6 +9,7 @@ export interface UserProfileProps {
 
 export function UserProfile({ userPromise }: UserProfileProps) {
     const user = use(userPromise);
+    
     const initials = user.name
         .split(' ')
         .map((part) => part[0])

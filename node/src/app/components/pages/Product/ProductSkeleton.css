@@ -1,0 +1,57 @@
+/* Same grid as .product-details so nothing shifts when the product arrives */
+.product-skeleton {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    gap: 32px;
+    align-items: start;
+}
+
+.product-skeleton__image,
+.product-skeleton__title,
+.product-skeleton__price,
+.product-skeleton__description {
+    border-radius: 4px;
+    background: #eee;
+    animation: product-skeleton-pulse 1.2s ease-in-out infinite;
+}
+
+.product-skeleton__image {
+    aspect-ratio: 1;
+    border-radius: 8px;
+}
+
+/* Heights match the line boxes of the title (32px), price (24px) and text (16px) */
+.product-skeleton__title {
+    width: 60%;
+    height: 37px;
+    margin-bottom: 8px;
+}
+
+.product-skeleton__price {
+    width: 80px;
+    height: 28px;
+    margin-bottom: 16px;
+}
+
+.product-skeleton__description {
+    width: 90%;
+    height: 18.5px;
+}
+
+@keyframes product-skeleton-pulse {
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-skeleton {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .product-skeleton * {
+        animation: none;
+    }
+}

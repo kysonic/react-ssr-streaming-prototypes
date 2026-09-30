@@ -6,6 +6,7 @@ export interface User {
 
 // Fake API: resolves after a delay so Suspense has something to stream
 export function fetchUser(delay = 1500): Promise<User> {
+    console.log('Fetch user <<<<<<<<<');
     return new Promise((resolve) => {
         setTimeout(
             () =>

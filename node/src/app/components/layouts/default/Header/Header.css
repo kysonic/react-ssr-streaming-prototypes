@@ -14,3 +14,22 @@
 .header__nav {
     flex: 1;
 }
+
+.header__nav {
+    display: flex;
+    gap: 16px;
+}
+
+.header__link {
+    color: #666;
+    text-decoration: none;
+
+    &:hover {
+        color: #222;
+    }
+
+    &.active {
+        color: #222;
+        font-weight: 600;
+    }
+}
