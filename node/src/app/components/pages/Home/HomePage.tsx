@@ -1,9 +1,10 @@
 import { Suspense } from 'react';
-import { fetchUser } from '../../../api/user.ts';
 import { UserProfileSkeleton } from '../../features/UserProfile/UserProfileSkeleton.tsx';
 import { Stylesheet } from '../../common/Stylesheet.tsx';
-import cssHref from './HomePage.css';
 import { lazyChunk } from '../../../lib/chunks/lazy-chunk.tsx';
+import { ProductList } from '../../features/ProductList/ProductList.tsx';
+
+import cssHref from './HomePage.css';
 
 const UserProfile = lazyChunk(
     'src/app/components/features/UserProfile/UserProfile.tsx',
@@ -14,10 +15,6 @@ const UserProfile = lazyChunk(
 );
 
 export function HomePage() {
-    // Created here, above the Suspense boundary, so the promise stays the same
-    // while UserProfile suspends and re-renders
-    const userPromise = fetchUser();
-
     return (
         <div className="home-page">
             <Stylesheet href={cssHref} />
@@ -27,9 +24,14 @@ export function HomePage() {
             </section>
             <aside className="home-page__sidebar">
                 <Suspense fallback={<UserProfileSkeleton />}>
-                    <UserProfile userPromise={userPromise} />
+                    <UserProfile />
                 </Suspense>
             </aside>
+            <section className="home-page__list">
+                <Suspense fallback={<div>Product list fallback...</div>}>
+                    <ProductList />
+                </Suspense>
+            </section>
         </div>
     );
 }

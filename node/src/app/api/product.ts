@@ -7,18 +7,21 @@ export interface Product {
     description: string;
 }
 
-const PRODUCTS: Record<string, Omit<Product, 'id'>> = {
+const PRODUCTS: Record<string, Product> = {
     '1': {
+        id: '1',
         title: 'Mechanical Keyboard',
         price: 129,
         description: 'Hot-swappable switches, aluminium case, USB-C.',
     },
     '2': {
+        id: '2',
         title: 'Wireless Mouse',
         price: 59,
         description: 'Lightweight shell, 70 hours of battery life.',
     },
     '3': {
+        id: '3',
         title: 'USB-C Hub',
         price: 39,
         description: 'Seven ports: HDMI, SD card, three USB-A, two USB-C.',
@@ -32,14 +35,13 @@ export function fetchProduct(id: string, delay = 1000): Promise<Product> {
     return new Promise((resolve) => {
         setTimeout(
             () =>
-                resolve({
-                    id,
-                    ...(PRODUCTS[id] ?? {
+                resolve(
+                    PRODUCTS[id] ?? {
                         title: `Product #${id}`,
                         price: 0,
                         description: 'No description yet.',
-                    }),
-                }),
+                    },
+                ),
             delay,
         );
     });
@@ -48,4 +50,29 @@ export function fetchProduct(id: string, delay = 1000): Promise<Product> {
 export const productQuery = (id: string): Query<Product> => ({
     key: `product:${id}`,
     fetch: () => fetchProduct(id),
+});
+
+export interface ProductsResponse {
+    products: Record<string, Product>;
+    total: number;
+}
+
+// Fake API: Returns whole products we have at the moment
+export function fetchProducts(delay = 2000): Promise<ProductsResponse> {
+    console.log(`Fetch products <<<<<`);
+    return new Promise((resolve) => {
+        setTimeout(
+            () =>
+                resolve({
+                    products: PRODUCTS,
+                    total: Object.keys(PRODUCTS).length,
+                }),
+            delay,
+        );
+    });
+}
+
+export const productsQuery = (): Query<ProductsResponse> => ({
+    key: 'products',
+    fetch: () => fetchProducts(),
 });

@@ -1,15 +1,15 @@
 import { use } from 'react';
-import { fetchUser, type User } from '../../../api/user.ts';
+import { fetchUser, userQuery, type User } from '../../../api/user.ts';
 import { Stylesheet } from '../../common/Stylesheet.tsx';
 import cssHref from './UserProfile.css';
+import { useQuery } from '../../../lib/data/query.ts';
 
 export interface UserProfileProps {
-    userPromise: Promise<User>;
 }
 
-export function UserProfile({ userPromise }: UserProfileProps) {
-    const user = use(userPromise);
-    
+export function UserProfile() {
+    const user = useQuery(userQuery());
+
     const initials = user.name
         .split(' ')
         .map((part) => part[0])

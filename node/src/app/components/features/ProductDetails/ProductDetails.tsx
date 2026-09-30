@@ -1,14 +1,14 @@
-import { use } from 'react';
-import type { Product } from '../../../api/product.ts';
+import { productQuery, type Product } from '../../../api/product.ts';
+import { useQuery } from '../../../lib/data/query.ts';
 import { Stylesheet } from '../../common/Stylesheet.tsx';
 import cssHref from './ProductDetails.css';
 
 export interface ProductDetailsProps {
-    productPromise: Promise<Product>;
+    id: string;
 }
 
-export function ProductDetails({ productPromise }: ProductDetailsProps) {
-    const product = use(productPromise);
+export function ProductDetails({ id }: ProductDetailsProps) {
+    const product = useQuery(productQuery(id));
 
     return (
         <article className="product-details">

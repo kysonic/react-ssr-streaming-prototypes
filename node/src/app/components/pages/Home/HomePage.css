@@ -21,6 +21,10 @@
     }
 }
 
+.home-page__list {
+    padding: 20px 0px;
+}
+
 @media (max-width: 768px) {
     .home-page {
         grid-template-columns: 1fr;
