@@ -1,3 +1,5 @@
+import type { Query } from '../lib/data/query.ts';
+
 export interface Product {
     id: string;
     title: string;
@@ -42,3 +44,8 @@ export function fetchProduct(id: string, delay = 1000): Promise<Product> {
         );
     });
 }
+
+export const productQuery = (id: string): Query<Product> => ({
+    key: `product:${id}`,
+    fetch: () => fetchProduct(id),
+});

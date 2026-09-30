@@ -1,3 +1,5 @@
+import type { Query } from '../lib/data/query.ts';
+
 export interface User {
     id: number;
     name: string;
@@ -19,3 +21,8 @@ export function fetchUser(delay = 1500): Promise<User> {
         );
     });
 }
+
+export const userQuery = (): Query<User> => ({
+    key: 'user',
+    fetch: () => fetchUser(),
+});

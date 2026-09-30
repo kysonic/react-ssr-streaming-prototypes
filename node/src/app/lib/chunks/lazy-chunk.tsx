@@ -1,4 +1,9 @@
-import { lazy, use, type ComponentProps, type ComponentType } from 'react';
+import {
+    lazy,
+    useContext,
+    type ComponentProps,
+    type ComponentType,
+} from 'react';
 import { ManifestContext, preloadChunk } from './manifest-context.ts';
 
 type AnyComponent = ComponentType<any>;
@@ -18,7 +23,7 @@ export function lazyChunk<T extends AnyComponent>(
     const Lazy = lazy(load);
 
     function Chunk(props: ComponentProps<T>) {
-        const manifest = use(ManifestContext);
+        const manifest = useContext(ManifestContext);
 
         if (manifest) {
             const assets = manifest.chunks[id];

@@ -1,6 +1,8 @@
 import path from 'node:path';
 import express from 'express';
 import { StaticRouter } from 'react-router';
+import { DataCache } from '../app/lib/data/data-cache.ts';
+import { DataContext } from '../app/lib/data/data-context.ts';
 import { StreamingSSRRenderer } from './lib/streaming-ssr-renderer.ts';
 import { Root } from './components/root.tsx';
 import { readManifest } from './lib/manifest.ts';
@@ -45,10 +47,13 @@ app.get('/{*splat}', (req, res, next) => {
     // The router only provides context, so it wraps Root from the outside:
     // StaticRouter here, BrowserRouter in src/client/index.tsx, Root is shared.
     // originalUrl keeps the query, BrowserRouter reads the same URL on hydration
+    // DataCache: a new one per request, so users never share data
     const stream = renderer.renderToStream(
-        <StaticRouter location={req.originalUrl}>
-            <Root manifest={manifest} />
-        </StaticRouter>,
+        <DataContext value={new DataCache()}>
+            <StaticRouter location={req.originalUrl}>
+                <Root manifest={manifest} />
+            </StaticRouter>
+        </DataContext>,
     );
 
     stream.pipe(res);
